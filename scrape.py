@@ -27,8 +27,25 @@ for tr in trs[1:]:
         # "image": image,
     })
 
-import pprint
 import random
 
+from PIL import Image
+import requests
+from io import BytesIO
+
 # Choose randomized champion
-pprint.pprint(champions[random.randint(0,len(champions)-1)])
+random_champion = champions[random.randint(0, len(champions) - 1)]
+
+# Create a formatted output
+formatted_output = f"""
+Randomly Chosen Champion:
+
+Name: {random_champion['name']}
+Image URL: {random_champion['image_url']}
+"""
+
+print(formatted_output)
+
+from IPython.display import Image as DisplayImage
+
+DisplayImage(url=random_champion['image_url'])
