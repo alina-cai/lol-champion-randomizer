@@ -1,5 +1,7 @@
 # League of Legends Champion Randomizer
 
+### A web application displaying a randomized LoL champion profile based on information scraped from the LoL wiki.
+
 In action - everytime the page is refreshed, a new randomized champion appears.
 
 https://github.com/alina-cai/python-bs4-web-scrape/assets/117325741/fce68a75-2778-443d-ae27-25a94350c03d
