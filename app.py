@@ -27,11 +27,7 @@ def random_champion():
         release_date = tds[2].get_text(strip=True)
         blue_essence = tds[4].get_text(strip=True)
         rp = tds[5].get_text(strip=True)
-        class_name = tds[1].get_text(strip=True)
-
-        # Split class_name into separate words
-        class_words = [word.capitalize() for word in class_name.split(" ")]
-        classs = " / ".join(class_words)
+        classs = tds[1].get_text(strip=False)
 
         champions.append({
             "name": name,

@@ -1,94 +1,118 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>LoL Randomizer</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap');
-        
-        body {
-            margin-top: -50px;
-            margin-left: -700px;
-            text-align: center;
-            font-family: 'Inconsolata', monospace;
-            line-height: 1.6;
-            background: url("{{ url_for('static', filename='wallpaper.png') }}") no-repeat center center fixed;
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+      @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap");
+      body {
+        margin-top: -50px;
+        margin-left: -800px;
+        text-align: center;
+        font-family: "Inconsolata", monospace;
+        line-height: 1.6;
+        background: url("{{ url_for('static', filename='wallpaper.png') }}")
+          no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
 
-        img {
-            width: 150px;
-            height: 150px;
-            image-rendering: pixelated;
-        }
+      h1 {
+        margin: 0;
+        text-align: center;
+        color: white;
+      }
 
-        .champion-info {
-            margin: 30px auto;
-        }
+      img {
+        width: 150px;
+        height: 150px;
+        image-rendering: pixelated;
+        display: block;
+        margin: 0 auto;
+      }
 
-        .champion-info p {
-            margin: 10px 0;
-        }
+      .champion-info {
+        margin: 30px 0;
+        color: white;
+        white-space: nowrap;
+      }
 
-        .champion-info p .label {
-            font-weight: bold;
-        }
+      .champion-info p {
+        margin: 10px 0;
+        display: flex;
+        justify-content: space-between;
+      }
 
-        button {
-            background-color: #008CBA;
-            border: none;
-            border-radius: 12px;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            transition-duration: 0.4s;
-            font-family: 'Inconsolata', monospace;
-        }
+      .champion-info p .label {
+        font-weight: bold;
+        min-width: 50px;
+      }
 
-        button:hover {
-            background-color: #73AABE;
-            color: white;
-        }
+      button {
+        background-color: #008cba;
+        border: none;
+        border-radius: 12px;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: block;
+        margin: 20px auto;
+        font-size: 16px;
+        cursor: pointer;
+        transition-duration: 0.4s;
+        font-family: "Inconsolata", monospace;
+      }
 
-        .content-box {
-            border: 3px solid #6A98BB;
-            background-color: rgba(44, 60, 73, 0.8);
-            border-radius: 15px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            display: inline-block;
-            padding: 30px;
-            padding-bottom: 40px;
-        }
+      button:hover {
+        background-color: #73aabe;
+        color: white;
+      }
 
-        .content-box > :first-child {
-            margin-top: 0;
-        }
-
-        h1 {
-            margin: 0;
-        }
-
+      .content-box {
+        border: 3px solid #6a98bb;
+        background-color: rgba(44, 60, 73, 0.8);
+        border-radius: 15px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        display: inline-block;
+        padding: 30px;
+        padding-bottom: 40px;
+        text-align: left;
+        width: 400px;
+        box-sizing: border-box;
+      }
     </style>
-</head>
-<body>
+    <script>
+      var releaseDate = "{{ release_date }}";
+      var dateObj = new Date(releaseDate);
+      var formattedDate = new Intl.DateTimeFormat("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      }).format(dateObj);
+
+      window.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("release-date").textContent = formattedDate;
+      });
+    </script>
+  </head>
+  <body>
     <div class="content-box">
-        <h1>{{ name }}</h1><br>
-        <img src="{{ image_url }}">
-        <div class="champion-info">
-            <p><span class="label">Release Date:</span> {{ release_date }}</p>
-            <p><span class="label">Blue Essence:</span> {{ blue_essence }}</p>
-            <p><span class="label">RP:</span> {{ rp }}</p>
-            <p><span class="label">Class:</span> {{ classs }}</p>
-        </div>
-        <button onclick="location.reload();">Generate</button>
+      <h1>{{ name }}</h1>
+      <br />
+      <img src="{{ image_url }}" />
+      <div class="champion-info">
+        <p>
+          <span class="label">Release Date:</span>
+          <span id="release-date"></span>
+        </p>
+        <p><span class="label">Blue Essence:</span> {{ blue_essence }}</p>
+        <p><span class="label">RP:</span> {{ rp }}</p>
+        <p><span class="label">Class:</span> {{ classs }}</p>
+      </div>
+      <button onclick="location.reload();">Generate</button>
     </div>
-</body>
+  </body>
 </html>
