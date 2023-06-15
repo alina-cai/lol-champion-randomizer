@@ -1,26 +1,21 @@
-print("Starting Flask app...")
-
-from flask import Flask, render_template
-import urllib3
-from bs4 import BeautifulSoup
 import random
 import base64
 import requests
+from flask import Flask, render_template
+from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
 @app.route('/')
 def random_champion():
     # Get html
-    http = urllib3.PoolManager()
-    r = http.request('GET', "https://leagueoflegends.fandom.com/wiki/List_of_champions")
+    r = requests.get("https://leagueoflegends.fandom.com/wiki/List_of_champions")
 
     # Initialize Beautiful Soup
-    soup = BeautifulSoup(r.data, 'html.parser')
+    soup = BeautifulSoup(r.content, 'html.parser')
 
     # Scrape relevant data
     champions = []
-
     tables = soup.find_all("table", {"class": "article-table"})
     tbody = tables[0].find("tbody")
     trs = tbody.find_all("tr")
@@ -32,7 +27,11 @@ def random_champion():
         release_date = tds[2].get_text(strip=True)
         blue_essence = tds[4].get_text(strip=True)
         rp = tds[5].get_text(strip=True)
-        classs = tds[1].get_text(strip=True)
+        class_name = tds[1].get_text(strip=True)
+
+        # Split class_name into separate words
+        class_words = [word.capitalize() for word in class_name.split(" ")]
+        classs = " / ".join(class_words)
 
         champions.append({
             "name": name,
@@ -41,11 +40,10 @@ def random_champion():
             "blue_essence": blue_essence,
             "rp": rp,
             "class": classs,
-            # Add more columns as needed
         })
 
     # Choose randomized champion
-    random_champion = champions[random.randint(0, len(champions) - 1)]
+    random_champion = random.choice(champions)
 
     # Fetch the image and convert it to a base64-encoded data URI
     response = requests.get(random_champion['image_url'])
@@ -60,4 +58,6 @@ def random_champion():
                            blue_essence=random_champion['blue_essence'],
                            rp=random_champion['rp'],
                            classs=random_champion['class'])
-                        
+
+if __name__ == "__main__":
+    app.run()

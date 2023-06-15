@@ -1,17 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random League of Legends Champion</title>
+    <title>LoL Randomizer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap');
+        
+        body {
+            margin-top: -50px;
+            margin-left: -700px;
+            text-align: center;
+            font-family: 'Inconsolata', monospace;
+            line-height: 1.6;
+            background: url("{{ url_for('static', filename='wallpaper.png') }}") no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            image-rendering: pixelated;
+        }
+
+        .champion-info {
+            margin: 30px auto;
+        }
+
+        .champion-info p {
+            margin: 10px 0;
+        }
+
+        .champion-info p .label {
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #008CBA;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition-duration: 0.4s;
+            font-family: 'Inconsolata', monospace;
+        }
+
+        button:hover {
+            background-color: #73AABE;
+            color: white;
+        }
+
+        .content-box {
+            border: 3px solid #6A98BB;
+            background-color: rgba(44, 60, 73, 0.8);
+            border-radius: 15px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            display: inline-block;
+            padding: 30px;
+            padding-bottom: 40px;
+        }
+
+        .content-box > :first-child {
+            margin-top: 0;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Random League of Legends Champion:</h1>
-    <h2>{{ name }}</h2>
-    <img src="{{ image_url }}" alt="{{ name }}">
-    <p>Release Date: {{ release_date }}</p>
-    <p>Blue Essence: {{ blue_essence }}</p>
-    <p>RP: {{ rp }}</p>
-    <p>Class: {{ classs }}</p>
+    <div class="content-box">
+        <h1>{{ name }}</h1><br>
+        <img src="{{ image_url }}">
+        <div class="champion-info">
+            <p><span class="label">Release Date:</span> {{ release_date }}</p>
+            <p><span class="label">Blue Essence:</span> {{ blue_essence }}</p>
+            <p><span class="label">RP:</span> {{ rp }}</p>
+            <p><span class="label">Class:</span> {{ classs }}</p>
+        </div>
+        <button onclick="location.reload();">Generate</button>
+    </div>
 </body>
 </html>
