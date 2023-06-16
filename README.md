@@ -4,6 +4,8 @@ Can be accessed at https://lolrandomizer.vercel.app/
 
 ### A web application displaying a randomized LoL champion profile based on information scraped from the LoL wiki.
 
+Everytime a new champion is added or updated, the information generated is automatically updated.
+
 ##### Both generated champion profile image and background image have been pixelated for visual appeal.
 
 In action - everytime the button is pressed or the page is refreshed, a new randomized champion appears.
