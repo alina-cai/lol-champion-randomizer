@@ -1,5 +1,7 @@
 # League of Legends Champion Randomizer
 
+Can be accessed at https://lolrandomizer.vercel.app/
+
 ### A web application displaying a randomized LoL champion profile based on information scraped from the LoL wiki.
 
 ##### Both generated champion profile image and background image have been pixelated for visual appeal.
