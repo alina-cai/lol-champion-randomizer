@@ -2,9 +2,11 @@
 
 ### A web application displaying a randomized LoL champion profile based on information scraped from the LoL wiki.
 
-In action - everytime the page is refreshed, a new randomized champion appears.
+##### Both generated champion profile image and background image have been pixelated for visual appeal.
 
-https://github.com/alina-cai/python-bs4-web-scrape/assets/117325741/fce68a75-2778-443d-ae27-25a94350c03d
+In action - everytime the button is pressed or the page is refreshed, a new randomized champion appears.
+
+https://github.com/alina-cai/lol-champion-randomizer/assets/117325741/f99d0bda-565f-4539-b75e-9a2efa3a1a53
 
 A simpler version that can be ran within the Jupyter Notebook environment.
 
